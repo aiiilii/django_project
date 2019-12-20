@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>{{post.title}}</title>
+</head>
+
+<body>
+    <div data-v-891f39ec class="pc-wrapper notranslate">
+        <div data-v-5a13539c data-v-891f39ec class="header red-header light-theme">
+            <h4 data-v-5a13539c class="RED" style="color: rgb(28, 117, 31);">Little Green Book</h4>
+
+            <ul class="navigation-bar" data-v-5a13539c>
+                <a href="/add?original_url={{ request.get_full_path }}" owl="home_tab" class="active" data-v-5a13539c>
+                    <li class="navigation-item home" data-v-5a13539c style="color: rgb(95, 160, 58);">Share My Life</li>
+                </a>
+                <a href="/" owl="home_tab" class="active" data-v-5a13539c>
+                    <li class="navigation-item home" data-v-5a13539c>Home</li>
+                </a>
+                {% if not request.session.userid %}
+                <a href="/login_register?original_url={{ request.get_full_path }}" class="active" data-v-5a13539c>
+                    <li class="navigation-item community-delicate" data-v-5a13539c>Login / Register</li>
+                </a>
+                {% else %}
+                <a href="/logout" class="active" data-v-5a13539c>
+                    <li class="navigation-item community-delicate" data-v-5a13539c>Logout</li>
+                </a>
+                {% endif %}
+            </ul>
+        </div>
+
+        <div>
+            <div data-v-01ae695e data-v-891f39ec class="card-note pc-container">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <div data-v-01ae695e class="left-card" style="min-height: 600px; display: inline-block;">
+                    <img src="{{ post.picture }}" alt="Picture" style="width: 350px;">
+                    <div data-v-01ae695e class="note-top">
+                        <h1 data-v-0698d22a data-v-01ae695e class="title">{{ post.title }}</h1>
+                    </div>
+                    <div data-v-2f34fa6e class="content">
+                        <p>{{ post.content }}</p>
+                    </div>
+                    <div>
+                        <!-- <img src="{% static 'images/image.jpg' %}" alt="Picture of view"><label>{{ post.views }}</label>
+                        <img src="{% static 'images/comment.png' %}"
+                            alt="Picture of comment"><label>{{ post.post_comments.count }}</label> -->
+
+                        <!-- {% if not request.session.userid %}
+                        <a href="/login_register?original_url={{ request.get_full_path }}"><img
+                                src="{% static 'images/image.jpg' %}" alt="Picture of uncolored heart 1"></a>
+                        <label>{{ post.users_who_like.count }}</label>
+                        {% else %}
+                        {% if user in post.users_who_like.all %}
+                        <a href="/{{ post.id }}/unlike"><img src="{% static 'images/image.jpg' %}"
+                                alt="Picture of colored heart"></a>
+                        <label>{{ post.users_who_like.count }}</label>
+                        {% else %}
+                        <a href="/{{ post.id }}/like"><img src="{% static 'images/image.jpg' %}"
+                                alt="Picture of uncolored heart"></a>
+                        <label>{{ post.users_who_like.count }}</label>
+                        {% endif %}
+                        {% endif %} -->
+                        <!-- <img src="{% static 'images/image.jpg' %}" alt="Picture of heart">
+                        <label>{{ post.users_who_like.count }}</label> -->
+                        <div class="tags bottom-gap-add" data-v-5e3e939c data-v-01ae695e>
+                            <div class="operation-block" data-v-5e3e939c>
+
+                                {% if not request.session.userid %}
+                                <span class="like" data-v-5e3e939c>
+                                    <a href="/login_register?original_url={{ request.get_full_path }}"><i
+                                            data-v-5e3e939c></i></a>
+                                    <span data-v-5e3e939c>{{ post.users_who_like.count }}</span>
+                                </span>
+                                <!-- <label>{{ post.users_who_like.count }}</label> -->
+                                {% else %}
+                                {% if user in post.users_who_like.all %}
+                                <span class="like" data-v-5e3e939c>
+                                    <a href="/{{ post.id }}/unlike"><i data-v-5e3e939c></i></a>
+                                    <span data-v-5e3e939c
+                                        style="color: rgb(196, 157, 29)">{{ post.users_who_like.count }}</span>
+                                </span>
+                                <!-- <label style="color: rgb(196, 157, 29)">{{ post.users_who_like.count }}</label> -->
+                                {% else %}
+                                <span class="like" data-v-5e3e939c>
+                                    <a href="/{{ post.id }}/like"><i data-v-5e3e939c></i></a>
+                                    <span data-v-5e3e939c>{{ post.users_who_like.count }}</span>
+                                </span>
+                                <!-- <label>{{ post.users_who_like.count }}</label> -->
+                                {% endif %}
+                                {% endif %}
+                                <span class="comment" data-v-5e3e939c>
+                                    <i data-v-5e3e939c></i>
+                                    <span data-v-5e3e939c>{{ post.post_comments.count }}</span>
+                                </span>
+                                <span class="star" data-v-5e3e939c>
+                                    <i data-v-5e3e939c></i>
+                                    <span data-v-5e3e939c>{{ post.views }}</span>
+                                </span>
+                            </div>
+                            <div class="publish-date" data-v-5e3e939c>
+                                <span data-v-5e3e939c>{{ post.created_at | date:'Y-m-d H:i'}}</span>
+                            </div>
+                            <div class="publish-date" data-v-5e3e939c>
+                                <span data-v-5e3e939c>{% for category in post.category.all %} #{{ category.title }}
+                                    {% endfor %}</span>
+                            </div>
+                        </div>
+                        <p><a href="/profile/{{post.uploaded_by_id}}">{{ post.uploaded_by.first_name }}
+                                {{ post.uploaded_by.last_name }}</a></p>
+                        {% if user == post.uploaded_by %}
+                        <a href="/{{post.id}}/delete">Remove</a> <a href="/edit/{{post.id}}">Edit</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div data-v-01ae695e class="right-card" style="display: inline-block;">
+                {% for comment in post.post_comments.all %}
+                <p>{{ comment.content }}</p>
+                <p>{{ comment.created_at | date:'Y-m-d' }}</p>
+
+                <!-- {% if not request.session.userid %}
+                    <a href="/login_register?original_url={{ request.get_full_path }}"><img
+                            src="{% static 'images/image.jpg' %}" alt="Picture of uncolored heart 1"></a>
+                    <label>{{ comment.users_who_like.count }}</label>
+                    {% else %}
+                    {% if user in comment.users_who_like.all %}
+                    <a href="/{{ post.id }}/{{ comment.id }}/unlike"><img src="{% static 'images/image.jpg' %}"
+                            alt="Picture of colored heart"></a>
+                    <label>{{ comment.users_who_like.count }}</label>
+                    {% else %}
+                    <a href="/{{ post.id }}/{{ comment.id }}/like"><img src="{% static 'images/image.jpg' %}"
+                            alt="Picture of uncolored heart"></a>
+                    <label>{{ comment.users_who_like.count }}</label>
+                    {% endif %}
+                    {% endif %} -->
+                {% if not request.session.userid %}
+                <span class="like" data-v-5e3e939c>
+                    <a href="/login_register?original_url={{ request.get_full_path }}">
+                        <!-- <i data-v-5e3e939c></i> -->
+                        <svg width="17px" height="17px" viewBox="0 0 17 17" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            data-v-4995e9d6 data-v-a7a94d88>
+                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                                stroke-linecap="round" stroke-linejoin="round" data-v-4995e9d6>
+                                <g id="2" transform="translate(-752.000000, -1386.000000)" stroke="#999999"
+                                    stroke-width="1.5" data-v-4995e9d6>
+                                    <g id="Group-30" transform="translate(300.000000, 1333.000000)" data-v-4995e9d6>
+                                        <g id="Group-19" transform="translate(0.000000, 42.000000)" data-v-4995e9d6>
+                                            <g id="Group-17" data-v-4995e9d6>
+                                                <g id="Group-16" data-v-4995e9d6>
+                                                    <g id="Group-15" data-v-4995e9d6>
+                                                        <g id="Group-11" data-v-4995e9d6>
+                                                            <g id="Group-55"
+                                                                transform="translate(453.000000, 10.000000)"
+                                                                data-v-4995e9d6>
+                                                                <g id="Group-53"
+                                                                    transform="translate(0.000000, 2.000000)"
+                                                                    data-v-4995e9d6>
+                                                                    <path
+                                                                        d="M2.31606717,13.7040937 L2.31606717,5.9695405 C2.31606717,5.40265829 2.75411161,4.94309345 3.29384494,4.94309345 L3.38868939,4.94309345 C4.83042272,4.94309345 5.99837828,3.71536214 5.99837828,2.20213581 L5.99837828,1.70149255 C5.99837828,0.820873901 6.67842272,0.107136335 7.51637828,0.107136335 C8.35482272,0.107136335 9.03437828,0.820873901 9.03437828,1.70149255 L9.03437828,4.24270637 C9.03437828,4.62935701 9.33308939,4.94309345 9.70024494,4.94309345 L11.9823783,4.92974296 C13.9384227,4.90560939 15.3679338,6.86145571 14.8414005,8.83989517 L13.5634449,13.2722568 C13.3136227,14.138498 12.5534005,14.7310542 11.6919783,14.7310542 L3.29384494,14.7310542 C2.75411161,14.7310542 2.31606717,14.2709759 2.31606717,13.7040937 Z"
+                                                                        id="Stroke-1" data-v-4995e9d6></path>
+                                                                    <path
+                                                                        d="M0.329956055,5.3489996 L0.329956055,14.5916443"
+                                                                        id="Stroke-3" data-v-4995e9d6></path>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </a>
+                    <span data-v-5e3e939c>{{ comment.users_who_like.count }}</span>
+                </span>
+                {% else %}
+                {% if user in comment.users_who_like.all %}
+                <span class="like" data-v-5e3e939c>
+                    <a href="/{{ post.id }}/{{ comment.id }}/unlike">
+                        <!-- <i data-v-5e3e939c></i> -->
+                        <svg width="17px" height="17px" viewBox="0 0 17 17" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            data-v-4995e9d6 data-v-a7a94d88>
+                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                                stroke-linecap="round" stroke-linejoin="round" data-v-4995e9d6>
+                                <g id="2" transform="translate(-752.000000, -1386.000000)" stroke="#999999"
+                                    stroke-width="1.5" data-v-4995e9d6>
+                                    <g id="Group-30" transform="translate(300.000000, 1333.000000)" data-v-4995e9d6>
+                                        <g id="Group-19" transform="translate(0.000000, 42.000000)" data-v-4995e9d6>
+                                            <g id="Group-17" data-v-4995e9d6>
+                                                <g id="Group-16" data-v-4995e9d6>
+                                                    <g id="Group-15" data-v-4995e9d6>
+                                                        <g id="Group-11" data-v-4995e9d6>
+                                                            <g id="Group-55"
+                                                                transform="translate(453.000000, 10.000000)"
+                                                                data-v-4995e9d6>
+                                                                <g id="Group-53"
+                                                                    transform="translate(0.000000, 2.000000)"
+                                                                    data-v-4995e9d6>
+                                                                    <path
+                                                                        d="M2.31606717,13.7040937 L2.31606717,5.9695405 C2.31606717,5.40265829 2.75411161,4.94309345 3.29384494,4.94309345 L3.38868939,4.94309345 C4.83042272,4.94309345 5.99837828,3.71536214 5.99837828,2.20213581 L5.99837828,1.70149255 C5.99837828,0.820873901 6.67842272,0.107136335 7.51637828,0.107136335 C8.35482272,0.107136335 9.03437828,0.820873901 9.03437828,1.70149255 L9.03437828,4.24270637 C9.03437828,4.62935701 9.33308939,4.94309345 9.70024494,4.94309345 L11.9823783,4.92974296 C13.9384227,4.90560939 15.3679338,6.86145571 14.8414005,8.83989517 L13.5634449,13.2722568 C13.3136227,14.138498 12.5534005,14.7310542 11.6919783,14.7310542 L3.29384494,14.7310542 C2.75411161,14.7310542 2.31606717,14.2709759 2.31606717,13.7040937 Z"
+                                                                        id="Stroke-1" data-v-4995e9d6></path>
+                                                                    <path
+                                                                        d="M0.329956055,5.3489996 L0.329956055,14.5916443"
+                                                                        id="Stroke-3" data-v-4995e9d6></path>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </a>
+                    <span data-v-5e3e939c style="color: rgb(196, 157, 29)">{{ comment.users_who_like.count }}</span>
+                </span>
+                {% else %}
+                <span class="like" data-v-5e3e939c>
+                    <a href="/{{ post.id }}/{{ comment.id }}/like">
+                        <!-- <i data-v-5e3e939c></i> -->
+                        <svg width="17px" height="17px" viewBox="0 0 17 17" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            data-v-4995e9d6 data-v-a7a94d88>
+                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+                                stroke-linecap="round" stroke-linejoin="round" data-v-4995e9d6>
+                                <g id="2" transform="translate(-752.000000, -1386.000000)" stroke="#999999"
+                                    stroke-width="1.5" data-v-4995e9d6>
+                                    <g id="Group-30" transform="translate(300.000000, 1333.000000)" data-v-4995e9d6>
+                                        <g id="Group-19" transform="translate(0.000000, 42.000000)" data-v-4995e9d6>
+                                            <g id="Group-17" data-v-4995e9d6>
+                                                <g id="Group-16" data-v-4995e9d6>
+                                                    <g id="Group-15" data-v-4995e9d6>
+                                                        <g id="Group-11" data-v-4995e9d6>
+                                                            <g id="Group-55"
+                                                                transform="translate(453.000000, 10.000000)"
+                                                                data-v-4995e9d6>
+                                                                <g id="Group-53"
+                                                                    transform="translate(0.000000, 2.000000)"
+                                                                    data-v-4995e9d6>
+                                                                    <path
+                                                                        d="M2.31606717,13.7040937 L2.31606717,5.9695405 C2.31606717,5.40265829 2.75411161,4.94309345 3.29384494,4.94309345 L3.38868939,4.94309345 C4.83042272,4.94309345 5.99837828,3.71536214 5.99837828,2.20213581 L5.99837828,1.70149255 C5.99837828,0.820873901 6.67842272,0.107136335 7.51637828,0.107136335 C8.35482272,0.107136335 9.03437828,0.820873901 9.03437828,1.70149255 L9.03437828,4.24270637 C9.03437828,4.62935701 9.33308939,4.94309345 9.70024494,4.94309345 L11.9823783,4.92974296 C13.9384227,4.90560939 15.3679338,6.86145571 14.8414005,8.83989517 L13.5634449,13.2722568 C13.3136227,14.138498 12.5534005,14.7310542 11.6919783,14.7310542 L3.29384494,14.7310542 C2.75411161,14.7310542 2.31606717,14.2709759 2.31606717,13.7040937 Z"
+                                                                        id="Stroke-1" data-v-4995e9d6></path>
+                                                                    <path
+                                                                        d="M0.329956055,5.3489996 L0.329956055,14.5916443"
+                                                                        id="Stroke-3" data-v-4995e9d6></path>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </a>
+                    <span data-v-5e3e939c>{{ comment.users_who_like.count }}</span>
+                </span>
+                {% endif %}
+                {% endif %}
+                <p><a href="/profile/{{post.uploaded_by_id}}">{{ post.uploaded_by.first_name }}
+                    {{ post.uploaded_by.last_name }}</a></p>
+                {% if user == comment.user %}
+                <p><a href="/{{post.id}}/{{ comment.id }}/delete">Delete</a></p>
+                {% endif %}
+                {% endfor %}
+
+                <form action="/{{ post.id }}/add_comment?original_url={{ request.get_full_path }}" method="POST">
+                    {% csrf_token %}
+                    <h5>Add a comment</h5>
+                    <textarea name="content" id="content" cols="55" rows="4"></textarea>
+                    <input type="hidden" name="postid" value="{{ post.id }}">
+                    <button type="submit" value="submit"> Post a comment</button>
+                </form>
+            </div>
+        </div>
+        <footer>
+            <div style="height: 40px;">
+
+            </div>
+        </footer>
+    </div><!--end of container-->
+</body>
+
+</html>

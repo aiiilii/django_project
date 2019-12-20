@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Edit {{post.title}}</title>
+</head>
+
+<body>
+    <div data-v-891f39ec class="pc-wrapper notranslate">
+        <div data-v-5a13539c data-v-891f39ec class="header red-header light-theme">
+            <h4 data-v-5a13539c class="RED" style="color: rgb(28, 117, 31);">Little Green Book</h4>
+            <ul class="navigation-bar" data-v-5a13539c>
+                <a href="/logout" owl="home_tab" class="active" data-v-5a13539c>
+                    <li class="navigation-item home" data-v-5a13539c>Logout</li>
+                </a>
+            </ul>
+        </div>
+
+        <div data-v-01ae695e data-v-891f39ec class="card-note pc-container">
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <div data-v-01ae695e class="left-card">
+                <h4>How would you like to update?</h4>
+                <form action="/edit/{{post.id}}?original_url={{ request.get_full_path }}" method="POST">
+                    {% csrf_token %}
+                    <!--able to change pictures-->
+                    <div>
+                        <label for="title">Title</label>
+                        <input type="text" name="title" id="title" value="{{ post.title }}">
+                    </div>
+                    <div>
+                        <div>Content</div>
+                        <textarea name="content" id="content" cols="50" rows="7">{{ post.content }}</textarea>
+                    </div>
+                    <div>
+                        <input type="hidden" name="category" id="category" value="{{ post.category }}">
+                        <button><a href="/">Cancel</a></button>
+                        <button type="submit">Save</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+    <!--end of container-->
+</body>
+
+</html>

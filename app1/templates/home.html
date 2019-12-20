@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Little Green Book</title>
+</head>
+
+<body>
+    <div data-v-891f39ec class="pc-wrapper notranslate">
+        <div data-v-5a13539c data-v-891f39ec class="header red-header light-theme">
+            <h4 data-v-5a13539c class="RED" style="color: rgb(28, 117, 31);">Little Green Book</h4>
+            <ul class="navigation-bar" data-v-5a13539c>
+                <a href="/add?original_url={{ request.get_full_path }}" owl="home_tab" class="active" data-v-5a13539c>
+                    <li class="navigation-item home" data-v-5a13539c style="color: rgb(95, 160, 58);">Share My Life</li>
+                </a>
+                {% if not request.session.userid %}
+                <a href="/login_register?original_url={{ request.get_full_path }}" class="active" data-v-5a13539c>
+                    <li class="navigation-item community-delicate" data-v-5a13539c>Login / Register</li>
+                </a>
+                {% else %}
+                <a href="/logout" class="active" data-v-5a13539c>
+                    <li class="navigation-item community-delicate" data-v-5a13539c>Logout</li>
+                </a>
+                {% endif %}
+            </ul>
+        </div>
+
+        <div data-v-01ae695e data-v-891f39ec class="card-note pc-container">
+
+            {% for post in posts %}
+            <div class="post" style="display: inline-block; margin-right: 99px;">
+                {% if post.picture %}
+                <img src="{{ post.picture }}" alt="Picture" style="width: 180px; height: 250;">
+                {% endif %}
+                <p><a href="/view/{{post.id}}?original_url={{ request.get_full_path }}" style="font-weight: 600; color: rgb(126, 87, 123);">{{ post.title }}</a></p>
+                <!-- <p>{{ post.content }}</p> -->
+                <p><a href="/profile/{{post.uploaded_by_id}}" style="font-weight: 200; color: rgb(133, 105, 126);">{{ post.uploaded_by.first_name }} {{ post.uploaded_by.last_name }}</a></p>
+                <div>
+                    <!-- <img src="{% static 'images/image.jpg' %}" alt="Picture of view"><label>{{ post.views }}</label>
+                    <img src="{% static 'images/image.jpg' %}"
+                        alt="Picture of comment"><label>{{ post.post_comments.count }}</label>
+                    <img src="{% static 'images/image.jpg' %}"
+                        alt="Picture of heart"><label>{{ post.users_who_like.count }}</label> -->
+
+                    <div class="tags bottom-gap-add" data-v-5e3e939c data-v-01ae695e>
+                        <div class="operation-block" data-v-5e3e939c>
+
+                            <span class="like" data-v-5e3e939c><i data-v-5e3e939c></i>
+                                <span data-v-5e3e939c>{{ post.users_who_like.count }}</span>
+                            </span>
+
+                            <span class="comment" data-v-5e3e939c>
+                                <i data-v-5e3e939c></i>
+                                <span data-v-5e3e939c>{{ post.post_comments.count }}</span>
+                            </span>
+                            <span class="star" data-v-5e3e939c>
+                                <i data-v-5e3e939c></i>
+                                <span data-v-5e3e939c>{{ post.views }}</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            {% endfor %}
+        </div>
+        <div class="pagination" style="text-align: center; margin-bottom: 25px;">
+            <span class="step-links">
+                {% if posts.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ posts.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ posts.number }} of {{ posts.paginator.num_pages }}
+                </span>
+
+                {% if posts.has_next %}
+                <a href="?page={{ posts.next_page_number }}">next</a>
+                <a href="?page={{ posts.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+    <!--end of container-->
+</body>
+
+</html>
+
+<!-- {% for message in messages %}
+<h3>{{ message.user.first_name }} {{ message.user.last_name }} - {{ message.created_at }}</h3>
+<p>{{ message.message }}</p>
+{% for comment in message.message_comments.all %}
+<h4>{{ comment.message_comments.first_name }} {{ comment.message_comments.last_name }} - {{ comment.created_at }}</h4>
+<p>{{ comment.comment }}</p>
+{% endfor %}
+
+<form action="post_comment" method="POST">
+    {% csrf_token %}
+    <h5>Post a comment</h5>
+    <textarea name="post_comment" id="post_comment" cols="60" rows="2"></textarea>
+    <input type="hidden" name="message_id" value="{{ message.id }}">
+    <button type="submit" value="submit"> Post a comment</button>
+</form>
+{% endfor %} -->

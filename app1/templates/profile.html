@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>{{user.first_name}} {{user.last_name}} Profile</title>
+</head>
+
+<body>
+
+    <body>
+        <!-- insert seo info -->
+        <div id="app">
+            <div data-server-rendered="true" class="pc-wrapper notranslate" data-v-891f39ec>
+                <div class="header red-header light-theme" data-v-5a13539c data-v-891f39ec>
+                    <h4 class="RED" data-v-5a13539c style="color: rgb(28, 117, 31);">
+                        Little Green Book
+                        <!-- <div class="logo" data-v-5a13539c>
+                             <img src="data:image/png;base64,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"
+                                class="light-logo" data-v-5a13539c> -->
+                            <!-- </div> --> 
+                        <!---->
+                    </h4>
+                    <ul class="navigation-bar" data-v-5a13539c>
+                        <ul class="navigation-bar" data-v-5a13539c>
+                            <a href="/add?original_url={{ request.get_full_path }}" owl="home_tab" class="active" data-v-5a13539c>
+                                <li class="navigation-item home" data-v-5a13539c style="color: rgb(95, 160, 58);">Share My Life</li>
+                            </a>
+                            <a href="/" owl="home_tab" class="active" data-v-5a13539c>
+                                <li class="navigation-item home" data-v-5a13539c>Home</li>
+                            </a>
+                            {% if not request.session.userid %}
+                            <a href="/login_register?original_url={{ request.get_full_path }}" class="active" data-v-5a13539c>
+                                <li class="navigation-item community-delicate" data-v-5a13539c>Login / Register</li>
+                            </a>
+                            {% else %}
+                            <a href="/logout" class="active" data-v-5a13539c>
+                                <li class="navigation-item community-delicate" data-v-5a13539c>Logout</li>
+                            </a>
+                            {% endif %}
+                        </ul>
+                         <!-- <a href="/" owl="home_tab" class="active" data-v-5a13539c>
+                            <li class="navigation-item home" data-v-5a13539c>Home</li>
+                        </a> <a href="/explore" class="active" data-v-5a13539c>
+                            <li class="navigation-item community-delicate" data-v-5a13539c>社区精选</li>
+                        </a> -->
+                        <!-- <a href="/user/profile/59397ad76a6a6912514f17ed" 
+                            class="active business-link router-link-exact-active active" data-v-5a13539c>
+                            <li class="navigation-item business" data-v-5a13539c>业务合作</li>
+                            <div class="drop-down-wrapper" data-v-5a13539c>
+                                <div class="dropdown-content" data-v-5a13539c><span data-v-5a13539c>品牌号</span> <span
+                                        data-v-5a13539c>广告合作</span> <span data-v-5a13539c>品牌合作人</span> <span
+                                        data-v-5a13539c>招商合作</span></div>
+                            </div>
+                        </a> 
+                        <a href="/protocols/about" class="active" data-v-5a13539c>
+                            <li class="navigation-item about-us" data-v-5a13539c>关于我们</li>
+                        </a> <a href="/protocols/liability" class="active" data-v-5a13539c>
+                            <li class="navigation-item liability" data-v-5a13539c>社会责任</li>
+                        </a> <a href="/"
+                            class="active router-link-exact-active active" data-v-5a13539c>
+                            <li class="navigation-item" data-v-5a13539c>Home</li>
+                        </a> <a href="/user/profile/59397ad76a6a6912514f17ed"
+                            class="active translation-wrapper router-link-exact-active active" data-v-5a13539c>
+                            <li class="navigation-item translation" data-v-5a13539c>
+                                中
+                                <img src="//ci.xiaohongshu.com/37dd6c5e-6cf8-4754-88d3-56b8a701c69a" class="arrow"
+                                    data-v-5a13539c></li>
+                            <div class="drop-up-wrapper chinese" data-v-5a13539c>
+                                <div class="drop-up-content" data-v-5a13539c><span data-v-5a13539c>English(US)</span>
+                                </div>
+                            </div>
+                        </a> -->
+                    </ul>
+                </div>
+                <div class="user-container pc-container" data-v-18d4833b data-v-891f39ec>
+                    <div class="author-card" data-v-18d4833b>
+                        <div class="author-container" data-v-961f104e data-v-18d4833b>
+                            <div class="left" data-v-961f104e>
+                                <div class="image-wrapper" data-v-961f104e>
+                                    <div class="lazyload-block" data-v-961f104e>
+                                        <div class="lazyload-container loaded">
+                                            <!-- <img
+                                                src="https://img.xiaohongshu.com/avatar/59397ad76a6a6912514f17ed.jpg@240w_240h_90q_1e_1c_1x.jpg"
+                                                class="lazyload lazyload-image loaded"
+                                                style="width:160px;height:160px;"> -->
+                                            <!---->
+                                        </div>
+                                    </div>
+                                </div> <i class="badge-icon" style="display:none;" data-v-961f104e></i>
+                            </div>
+                            <div class="right" data-v-961f104e>
+                                <div class="user-name" data-v-961f104e><span class="name-detail"
+                                        data-v-961f104e>{{user.first_name}} {{user.last_name}}</span> <i class="level-detail"
+                                        style="background-image:url(http://s4.xiaohongshu.com/static/throne/3f_ee6c7b8914941a0b856c36148fe45342.png);"
+                                        data-v-961f104e></i></div>
+                                <div class="user-brief" data-v-961f104e>Introduce yourself...</div>
+                                <div class="location" data-v-961f104e>
+                                    <div class="location-icon" data-v-961f104e>
+                                        <div class="lazyload-block" data-v-961f104e>
+                                            <div class="lazyload-container loaded"><img
+                                                    src="//ci.xiaohongshu.com/2ea66ffa-d9a5-4866-802d-f912a7900111"
+                                                    class="lazyload lazyload-image loaded"
+                                                    style="width:20px;height:20px;">
+                                                <!---->
+                                            </div>
+                                        </div>
+                                    </div> <span class="location-text" data-v-961f104e>Somewhere on Earth~</span>
+                                </div>
+                                <div class="card-info" data-v-961f104e>
+                                    <div class="info" data-v-961f104e><span class="info-text" data-v-961f104e>Following</span>
+                                        <span class="info-number" data-v-961f104e>15</span></div>
+                                    <div class="info" data-v-961f104e><span class="info-text" data-v-961f104e>Followers</span>
+                                        <span class="info-number" data-v-961f104e>6</span></div>
+                                    <div class="info" data-v-961f104e><span class="info-text"
+                                            data-v-961f104e>Likes</span> <span class="info-number"
+                                            data-v-961f104e>382</span></div>
+                                    <!-- {% if request.session.userid %}-->
+                                    <!-- {% endif %} -->
+                                    <div class="info" data-v-961f104e><span class="info-text"
+                                        data-v-961f104e><a href="/follow/{{user.id}}">Follow</a></span><span class="info-number"
+                                        data-v-961f104e>~</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="note-album" data-v-18d4833b><span class="type current-type" data-v-18d4833b>Posts</span>
+                        <span class="type" data-v-18d4833b>Album</span></div>
+                    <!-- <div class="display-zone" data-v-18d4833b>
+                        <div class="note-wrapper" style="display:;" data-v-18d4833b>
+                            <div class="note-container" data-v-4815da0d data-v-18d4833b>
+                                <div class="note-wrapper" data-v-4815da0d>
+                                    <div class="note-column" data-v-4815da0d>
+                                        <div class="note" data-v-4815da0d>
+                                            <div class="note-info" data-v-4815da0d>
+                                                <div class="note-image" data-v-4815da0d>
+                                                    <div class="lazyload-block" data-v-4815da0d>
+                                                        <div class="lazyload-container loaded"><img
+                                                                src="https://ci.xiaohongshu.com/dc71b5a2-1a38-5e13-a285-098c44eda1ad?imageView2/2/w/1080/format/jpg"
+                                                                class="lazyload lazyload-image loaded"
+                                                                style="width:220px;height:139.00390625px;"> -->
+                                                            <!---->
+                                                        <!-- </div>
+                                                    </div> <i class="normal" data-v-4815da0d></i>
+                                                </div> -->
+                                                <!---->
+                                            <!-- </div> -->
+                                            <!-- <div class="note-append" data-v-4815da0d>
+                                                <div class="user" data-v-4815da0d>
+                                                    <div class="user-image-wrapper" data-v-4815da0d><img
+                                                            src="https://img.xiaohongshu.com/avatar/59397ad76a6a6912514f17ed.jpg@80w_80h_90q_1e_1c_1x.jpg"
+                                                            class="user-image" data-v-4815da0d> <i class="official"
+                                                            style="display:none;" data-v-4815da0d></i></div> <span
+                                                        class="name" data-v-4815da0d>🌙一只恩</span>
+                                                </div>
+                                                <div class="like" data-v-4815da0d><i class="heart" data-v-4815da0d></i>
+                                                    <span class="likes" data-v-4815da0d>4</span></div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                    <!-- <div class="note-column" data-v-4815da0d>
+                                        <div class="note" data-v-4815da0d>
+                                            <div class="note-info" data-v-4815da0d>
+                                                <div class="note-image" data-v-4815da0d>
+                                                    <div class="lazyload-block" data-v-4815da0d>
+                                                        <div class="lazyload-container loaded"><img
+                                                                src="https://ci.xiaohongshu.com/9dfa9982-bc9e-5707-b690-8de76122b22b?imageView2/2/w/1080/format/jpg"
+                                                                class="lazyload lazyload-image loaded"
+                                                                style="width:220px;height:220px;"> -->
+                                                            <!---->
+                                                        <!-- </div>
+                                                    </div> <i class="normal" data-v-4815da0d></i>
+                                                </div>
+                                                <h3 class="info" data-v-4815da0d>华为matebook14</h3>
+                                            </div>
+                                            <div class="note-append" data-v-4815da0d>
+                                                <div class="user" data-v-4815da0d>
+                                                    <div class="user-image-wrapper" data-v-4815da0d><img
+                                                            src="https://img.xiaohongshu.com/avatar/59397ad76a6a6912514f17ed.jpg@80w_80h_90q_1e_1c_1x.jpg"
+                                                            class="user-image" data-v-4815da0d> <i class="official"
+                                                            style="display:none;" data-v-4815da0d></i></div> <span
+                                                        class="name" data-v-4815da0d>🌙一只恩</span>
+                                                </div>
+                                                <div class="like" data-v-4815da0d><i class="heart" data-v-4815da0d></i>
+                                                    <span class="likes" data-v-4815da0d>291</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="note-column" data-v-4815da0d></div>
+                                    <div class="note-column" data-v-4815da0d></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="album-wrapper" style="display:none;" data-v-18d4833b>
+                            <div class="album-container" data-v-6442c56f data-v-18d4833b>
+                                <div class="each-album" data-v-6442c56f>
+                                    <div class="top-info" data-v-6442c56f><span class="title"
+                                            data-v-6442c56f>个人专辑</span>
+                                        <div class="info" data-v-6442c56f><span class="note" data-v-6442c56f>笔记<i
+                                                    class="dot" data-v-6442c56f></i>46</span> <span class="fans"
+                                                style="display:none;" data-v-6442c56f>粉丝<i class="dot"
+                                                    data-v-6442c56f></i>0</span></div>
+                                    </div>
+                                    <div class="bottom-img" data-v-6442c56f>
+                                        <div class="small-img img-item" data-v-6442c56f>
+                                            <div class="lazyload-block" data-v-6442c56f>
+                                                <div class="lazyload-container loaded"><img
+                                                        src="https://ci.xiaohongshu.com/a864356c-d2d4-3531-b7ba-5234b4bcaea8?imageView2/2/w/270/format/jpg"
+                                                        class="lazyload lazyload-image loaded"
+                                                        style="width:90px;height:90px;"> -->
+                                                    <!---->
+                                                <!-- </div>
+                                            </div>
+                                        </div>
+                                        <div class="small-img img-item" data-v-6442c56f>
+                                            <div class="lazyload-block" data-v-6442c56f>
+                                                <div class="lazyload-container loaded"><img
+                                                        src="https://ci.xiaohongshu.com/3fb77413-a2b3-3c29-8be3-43c474998c50?imageView2/2/w/270/format/jpg"
+                                                        class="lazyload lazyload-image loaded"
+                                                        style="width:90px;height:90px;"> -->
+                                                    <!---->
+                                                <!-- </div>
+                                            </div>
+                                        </div>
+                                        <div class="small-img img-item" data-v-6442c56f>
+                                            <div class="lazyload-block" data-v-6442c56f>
+                                                <div class="lazyload-container loaded"><img
+                                                        src="https://ci.xiaohongshu.com/1c0df4ce-a5f1-31e0-96f2-ed8707a8a7a9?imageView2/2/w/270/format/jpg"
+                                                        class="lazyload lazyload-image loaded"
+                                                        style="width:90px;height:90px;"> -->
+                                                    <!---->
+                                                <!-- </div>
+                                            </div>
+                                        </div>
+                                        <div class="small-img img-item" data-v-6442c56f>
+                                            <div class="lazyload-block" data-v-6442c56f>
+                                                <div class="lazyload-container loaded"><img
+                                                        src="https://ci.xiaohongshu.com/cc503ba0-0ff0-3762-8f60-09db10541b4e?imageView2/2/w/270/format/jpg"
+                                                        class="lazyload lazyload-image loaded"
+                                                        style="width:90px;height:90px;"> -->
+                                                    <!---->
+                                                <!-- </div>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="more" data-v-18d4833b>Show More</div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
