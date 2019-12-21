@@ -277,8 +277,8 @@
                 </span>
                 {% endif %}
                 {% endif %}
-                <p><a href="/profile/{{post.uploaded_by_id}}">{{ post.uploaded_by.first_name }}
-                    {{ post.uploaded_by.last_name }}</a></p>
+                <p><a href="/profile/{{post.uploaded_by_id}}">{{ comment.user.first_name }}
+                    {{ comment.user.last_name }}</a></p>
                 {% if user == comment.user %}
                 <p><a href="/{{post.id}}/{{ comment.id }}/delete">Delete</a></p>
                 {% endif %}
