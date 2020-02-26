@@ -25,7 +25,7 @@ SECRET_KEY = '-@re_=u$bk4b#ow6z*vrya=o%zju#5u&m3!*5qro^o$*!j&%ji'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ailiminiblog.azurewebsites.net', 'treehole.ailihgong.com']
 
 
 # Application definition
